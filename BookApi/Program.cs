@@ -48,8 +48,9 @@ namespace BookApi
                 spa.Options.SourcePath = "ClientApp";
                 if (app.Environment.IsDevelopment())
                 {
-
-                    spa.UseAngularCliServer(npmScript: "start");
+                  
+                    spa.UseAngularCliServer(npmScript: "build-and-start");
+                    
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
