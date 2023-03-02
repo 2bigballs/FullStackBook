@@ -1,5 +1,7 @@
+using BookApi.Extension;
 using BookApi.Middlewares;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.Extensions.FileProviders;
 
 namespace BookApi
 {
@@ -10,7 +12,7 @@ namespace BookApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddPresentation(builder.Configuration);
-            
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -27,7 +29,7 @@ namespace BookApi
             app.UseStaticFiles();
 
             app.UseLoggingRequest();
-
+            
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
@@ -45,13 +47,11 @@ namespace BookApi
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
-                if (app.Environment.IsDevelopment())
+                spa.Options.SourcePath = Path.Combine("ClientApp");
+
+                if (app.Environment.IsDevelopment() && !app.Environment.IsRunningInContainer() )
                 {
-                  
-                    spa.UseAngularCliServer(npmScript: "build-and-start");
-                    
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    spa.UseAngularCliServer(npmScript: "buildModern");
                 }
             });
 

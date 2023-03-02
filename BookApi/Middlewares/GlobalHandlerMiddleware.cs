@@ -1,5 +1,6 @@
 ﻿using Application.Models;
 
+
 namespace BookApi.Middlewares
 {
     public class GlobalHandlerMiddleware
@@ -21,6 +22,8 @@ namespace BookApi.Middlewares
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
+                _logger.LogError(ex.InnerException?.ToString());
+                _logger.LogError(ex.ToString());
                 await HandleExceptionAsync(httpContext, ex);
             }
         }

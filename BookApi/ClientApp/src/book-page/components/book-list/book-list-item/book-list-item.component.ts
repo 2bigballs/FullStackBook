@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {IBook} from "../../../models/book";
-import {baseUrl} from "../../../services/book.service";
 import {Store} from "@ngrx/store";
 import * as BookActions from "../../../store/book/book.actions";
 

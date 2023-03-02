@@ -6,14 +6,14 @@ import {convertObjectToFromData} from "./helpers/httpClient.helper";
 import {updateBook} from "../store/book/book.actions";
 import {IViewBook} from "../models/view-book";
 
-export const baseUrl = "https://localhost:5000/"
+// export const baseUrl = "https://localhost:5000/"
 @Injectable({
   providedIn: 'root'
 })
 export class BookService{
 
 
-  private bookUrl = baseUrl+"api/books";
+   private bookUrl = "api/books";
 
   constructor(private httpClient: HttpClient) {
 

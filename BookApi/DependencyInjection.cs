@@ -12,6 +12,7 @@ namespace BookApi
 {
     public static class DependencyInjection
     {
+
         public static IServiceCollection AddPresentation(this IServiceCollection services, IConfiguration configuration)
         {
            
@@ -42,10 +43,17 @@ namespace BookApi
             IConfiguration configuration)
         {
             services.AddCors();
-            services.AddSpaStaticFiles(configuration =>
+            try
             {
-                configuration.RootPath = "ClientApp\\dist";
-            });
+                services.AddSpaStaticFiles(configuration =>
+                {
+                    configuration.RootPath = Path.Combine("ClientApp", "dist", "library");
+                });
+            }
+            catch (Exception e)
+            {
+            }
+          
             return services;
         }
 
